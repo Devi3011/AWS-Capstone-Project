@@ -1,0 +1,133 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+    <h1>❓ Help Center & Documentation</h1>
+    <p style="opacity:0.9; font-size:1.1rem;">Everything you need to master AI Marketing Pro</p>
+
+    <!-- QUICK START -->
+    <div class="card" style="margin-top:2rem;">
+        <h3>⚡ Quick Start (2 minutes)</h3>
+        <ol style="margin-left:1.2rem; line-height:1.6;">
+            <li><strong>Login:</strong> Use <code>admin</code> / <code>admin123</code></li>
+            <li><strong>Dashboard:</strong> View key metrics at a glance</li>
+            <li><strong>AI Demo:</strong> Test personalized message generation</li>
+            <li><strong>Reports:</strong> Download PDF/CSV summaries</li>
+            <li><strong>Insights:</strong> Deep dive into customer segments</li>
+        </ol>
+    </div>
+
+    <!-- COMPREHENSIVE FAQ -->
+    <div class="card">
+        <h3>📋 Frequently Asked Questions</h3>
+        
+        <details style="margin-bottom:1rem;">
+            <summary style="font-weight:600; padding:1rem; background:rgba(255,255,255,0.1); border-radius:12px; cursor:pointer;">
+                🎯 What does each metric mean?
+            </summary>
+            <div style="padding:1.5rem; background:rgba(255,255,255,0.05); border-radius:12px; margin-top:0.5rem;">
+                <ul style="margin-left:1.2rem;">
+                    <li><strong>Total Customers:</strong> All customers in your database</li>
+                    <li><strong>High Value:</strong> Customers with ₹100+ last purchase (VIPs)</li>
+                    <li><strong>High Engagement:</strong> Score > 0.8 (likely to open/click)</li>
+                    <li><strong>Avg Engagement:</strong> Mean score across all customers (0-1)</li>
+                </ul>
+            </div>
+        </details>
+
+        <details style="margin-bottom:1rem;">
+            <summary style="font-weight:600; padding:1rem; background:rgba(255,255,255,0.1); border-radius:12px; cursor:pointer;">
+                🤖 How does AI Demo work?
+            </summary>
+            <div style="padding:1.5rem; background:rgba(255,255,255,0.05); border-radius:12px; margin-top:0.5rem;">
+                <p>Enter any customer name → Get instant personalized marketing message. Perfect for testing subject lines and offers.</p>
+                <div style="background:rgba(0,0,0,0.3); padding:1rem; border-radius:8px; margin-top:1rem; font-family:monospace;">
+                    Input: "Anita" → Output: "Hi Anita! Your personalized AI message: 25% OFF exclusive offer just for you! 🎁"
+                </div>
+            </div>
+        </details>
+
+        <details style="margin-bottom:1rem;">
+            <summary style="font-weight:600; padding:1rem; background:rgba(255,255,255,0.1); border-radius:12px; cursor:pointer;">
+                📊 How to use Insights page?
+            </summary>
+            <div style="padding:1.5rem; background:rgba(255,255,255,0.05); border-radius:12px; margin-top:0.5rem;">
+                <p><strong>Customer Segments Guide:</strong></p>
+                <table style="width:100%; margin-top:1rem;">
+                    <tr><th>Segment</th><th>Profile</th><th>Action</th></tr>
+                    <tr><td>VIP</td><td>High value + High engagement</td><td>Exclusive offers</td></tr>
+                    <tr><td>At Risk</td><td>High value + Low engagement</td><td>Win-back emails</td></tr>
+                    <tr><td>Growth</td><td>Low value + High engagement</td><td>Upsell bundles</td></tr>
+                    <tr><td>Cold</td><td>Low value + Low engagement</td><td>Broad campaigns</td></tr>
+                </table>
+            </div>
+        </details>
+
+        <details style="margin-bottom:1rem;">
+            <summary style="font-weight:600; padding:1rem; background:rgba(255,255,255,0.1); border-radius:12px; cursor:pointer;">
+                📋 Reports - What gets downloaded?
+            </summary>
+            <div style="padding:1.5rem; background:rgba(255,255,255,0.05); border-radius:12px; margin-top:0.5rem;">
+                <ul style="margin-left:1.2rem;">
+                    <li><strong>PDF:</strong> Executive summary with charts and recommendations</li>
+                    <li><strong>CSV:</strong> Raw customer data (name, email, engagement score)</li>
+                </ul>
+                <p style="margin-top:1rem;"><em>Demo mode shows preview. Production exports full data.</em></p>
+            </div>
+        </details>
+
+        <details style="margin-bottom:1rem;">
+            <summary style="font-weight:600; padding:1rem; background:rgba(255,255,255,0.1); border-radius:12px; cursor:pointer;">
+                ⚙️ Settings - What can I customize?
+            </summary>
+            <div style="padding:1.5rem; background:rgba(255,255,255,0.05); border-radius:12px; margin-top:0.5rem;">
+                <ul style="margin-left:1.2rem;">
+                    <li>✅ Email notifications (campaign performance alerts)</li>
+                    <li>🌙 Dark mode (UI preference)</li>
+                    <li>💾 Auto-save drafts (never lose work)</li>
+                </ul>
+            </div>
+        </details>
+    </div>
+
+    <!-- MARKETING BEST PRACTICES -->
+    <div class="card">
+        <h3>🎓 Marketing Best Practices</h3>
+        <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:1.5rem; margin-top:1.5rem;">
+            <div style="padding:1.5rem; background:rgba(34,197,94,0.2); border-radius:12px; border-left:4px solid #22c55e;">
+                <h4>✅ Do This</h4>
+                <ul style="margin-left:1rem;">
+                    <li>Target VIPs first (highest ROI)</li>
+                    <li>Test 3+ subject lines per campaign</li>
+                    <li>Send at optimal times (Insights → Engagement)</li>
+                </ul>
+            </div>
+            <div style="padding:1.5rem; background:rgba(239,68,68,0.2); border-radius:12px; border-left:4px solid #ef4444;">
+                <h4>❌ Avoid</h4>
+                <ul style="margin-left:1rem;">
+                    <li>Spam "Cold" segment</li>
+                    <li>Generic messages to VIPs</li>
+                    <li>Ignore low engagement customers</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- SUPPORT & CONTACT -->
+    <div class="card">
+        <h3>🆘 Need More Help?</h3>
+        <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:1rem;">
+            <div style="text-align:center; padding:1.5rem;">
+                <div style="font-size:2rem;">📧</div>
+                <div><strong>support@aimarketingpro.com</strong></div>
+            </div>
+            <div style="text-align:center; padding:1.5rem;">
+                <div style="font-size:2rem;">💬</div>
+                <div><strong>Live Chat</strong> (9AM-6PM IST)</div>
+            </div>
+            <div style="text-align:center; padding:1.5rem;">
+                <a href="{{ url_for('demo') }}" class="btn" style="width:100%;">🤖 Try AI Demo First</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

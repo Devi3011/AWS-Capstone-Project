@@ -1,0 +1,240 @@
+{% extends "base.html" %}
+{% block title %}📋 Advanced Reports - AI Marketing Pro{% endblock %}
+{% block content %}
+
+<div class="reports-wrapper">
+    <!-- 📈 REPORTS HEADER -->
+    <div class="reports-header">
+        <div class="reports-title">
+            <h1>📋 Advanced Marketing Reports</h1>
+            <p>Exportable insights • {{ total_customers|default(0) }} customers • {{ "%.1f"|format(avg_engagement*100) }}% avg engagement</p>
+        </div>
+        <div class="reports-actions">
+            <button class="btn" onclick="exportReport('pdf')">
+                <i class="fas fa-download"></i> Export PDF
+            </button>
+            <button class="btn btn-secondary" onclick="exportReport('excel')">
+                📊 Export Excel
+            </button>
+            <button class="btn" onclick="notifSlide.addBuy('Full Report Suite', 99, '{{ session.username }}!')">
+                💎 Full Analytics ($99)
+            </button>
+        </div>
+    </div>
+
+    <!-- 🔥 EXECUTIVE SUMMARY (3-column KPIs) -->
+    <div class="executive-summary">
+        <div class="kpi-card revenue">
+            <div class="kpi-icon">💰</div>
+            <div class="kpi-main">$127,450</div>
+            <div class="kpi-label">Total Revenue (90 days)</div>
+            <div class="kpi-trend positive">+28% vs last quarter</div>
+        </div>
+        <div class="kpi-card conversion">
+            <div class="kpi-icon">🎯</div>
+            <div class="kpi-main">3.7x</div>
+            <div class="kpi-label">ROAS</div>
+            <div class="kpi-trend positive">Industry Top 12%</div>
+        </div>
+        <div class="kpi-card efficiency">
+            <div class="kpi-icon">⚡</div>
+            <div class="kpi-main">$89</div>
+            <div class="kpi-label">Avg CPA</div>
+            <div class="kpi-trend warning">-15% vs target</div>
+        </div>
+    </div>
+
+    <!-- 📊 PERFORMANCE BREAKDOWN (2-column) -->
+    <div class="reports-grid">
+        <!-- LEFT: Channel Performance -->
+        <div class="report-card">
+            <div class="card-header">
+                <h3>📊 Channel Performance</h3>
+                <select onchange="filterChannel(this.value)">
+                    <option>All Channels</option>
+                    <option>Email</option>
+                    <option>Social</option>
+                    <option>Paid Ads</option>
+                </select>
+            </div>
+            <div class="channel-table">
+                <table>
+                    <thead>
+                        <tr><th>Channel</th><th>Revenue</th><th>ROI</th><th>Conv%</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr onclick="notifSlide.addBuy('Email Optimization Report', 79, 'Marketing Team')">
+                            <td>📧 Email</td><td>$78.2K</td><td>4.8x</td><td>12.4%</td>
+                        </tr>
+                        <tr onclick="notifSlide.addBuy('Social Media Report', 59, 'Growth Team')">
+                            <td>📱 Social</td><td>$34.1K</td><td>2.9x</td><td>8.7%</td>
+                        </tr>
+                        <tr onclick="notifSlide.addBuy('Paid Ads Analysis', 129, 'PPC Team')">
+                            <td>💸 Paid Ads</td><td>$15.3K</td><td>1.8x</td><td>5.2%</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- RIGHT: Customer Segments -->
+        <div class="report-card">
+            <div class="card-header">
+                <h3>👥 Customer Segments</h3>
+            </div>
+            <div class="segment-metrics">
+                <div class="segment">
+                    <div class="segment-label">High Value</div>
+                    <div class="segment-value">{{ high_value_customers|default(2) }}</div>
+                    <div class="segment-change positive">+34%</div>
+                </div>
+                <div class="segment">
+                    <div class="segment-label">High Engagement</div>
+                    <div class="segment-value">{{ high_engagement_customers|default(2) }}</div>
+                    <div class="segment-change positive">+22%</div>
+                </div>
+                <div class="segment">
+                    <div class="segment-label">At Risk</div>
+                    <div class="segment-value">{{ at_risk_customers|default(1) }}</div>
+                    <div class="segment-change danger">-8%</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 📈 TRENDS & PREDICTIONS (Full width) -->
+    <div class="report-card full-width">
+        <div class="card-header">
+            <h3>📈 Revenue Trends & AI Predictions</h3>
+        </div>
+        <div class="trends-section">
+            <div class="trend-cards">
+                <div class="trend-card">
+                    <h4>Next 30 Days Prediction</h4>
+                    <div class="prediction">$162K <span class="positive">+27%</span></div>
+                    <p>AI forecasts based on current trajectory</p>
+                </div>
+                <div class="trend-card">
+                    <h4>Best Performing Campaign</h4>
+                    <div class="highlight">Product Launch</div>
+                    <p>$42.3K revenue • 4.2x ROI</p>
+                </div>
+                <div class="trend-card">
+                    <h4>Optimization Priority</h4>
+                    <div class="warning">Winback Campaigns</div>
+                    <p>AI predicts 2.1x improvement potential</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 💾 REPORT DOWNLOADS -->
+    <div class="download-section">
+        <h3>📥 Ready-to-Share Reports</h3>
+        <div class="download-grid">
+            <div class="download-item" onclick="notifSlide.addBuy('Campaign Report PDF', 29, '{{ session.username }}!')">
+                <i class="fas fa-file-pdf"></i>
+                <div>
+                    <h4>Campaign Performance</h4>
+                    <p>Full breakdown + charts</p>
+                </div>
+                <span>$29</span>
+            </div>
+            <div class="download-item" onclick="notifSlide.addBuy('Customer Insights', 49, '{{ session.username }}!')">
+                <i class="fas fa-users"></i>
+                <div>
+                    <h4>Customer Analytics</h4>
+                    <p>Segmentation + lifetime value</p>
+                </div>
+                <span>$49</span>
+            </div>
+            <div class="download-item" onclick="notifSlide.addBuy('Competitor Analysis', 79, '{{ session.username }}!')">
+                <i class="fas fa-chart-line"></i>
+                <div>
+                    <h4>Competitor Report</h4>
+                    <p>Market positioning + gaps</p>
+                </div>
+                <span>$79</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.reports-wrapper { max-width: 1400px; margin: 0 auto; padding: 2rem; }
+.reports-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2.5rem; flex-wrap: wrap; gap: 1rem; }
+.reports-title h1 { font-size: 2.5rem; margin: 0 0 0.5rem 0; }
+.reports-title p { color: rgba(255,255,255,0.8); margin: 0; }
+.reports-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+.executive-summary { 
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
+    gap: 1.5rem; margin-bottom: 2.5rem; 
+}
+.kpi-card { text-align: center; padding: 2.5rem; border-radius: 20px; position: relative; overflow: hidden; }
+.kpi-card.revenue { background: linear-gradient(135deg, rgba(34,197,94,0.3), rgba(16,185,129,0.2)); }
+.kpi-card.conversion { background: linear-gradient(135deg, rgba(59,130,246,0.3), rgba(37,99,235,0.2)); }
+.kpi-card.efficiency { background: linear-gradient(135deg, rgba(254,202,87,0.3), rgba(251,191,36,0.2)); }
+.kpi-icon { font-size: 3rem; margin-bottom: 1rem; }
+.kpi-main { font-size: 3.5rem; font-weight: 800; margin-bottom: 0.5rem; }
+.kpi-label { font-size: 1.1rem; opacity: 0.9; margin-bottom: 0.75rem; }
+.kpi-trend { font-size: 1rem; font-weight: 600; padding: 0.5rem 1rem; border-radius: 20px; }
+.kpi-trend.positive { background: rgba(34,197,94,0.2); color: #10b981; }
+.kpi-trend.warning { background: rgba(254,202,87,0.2); color: #d97706; }
+
+.reports-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 2rem; margin-bottom: 2.5rem; }
+.report-card { background: rgba(255,255,255,0.15); border-radius: 20px; padding: 2rem; }
+.report-card.full-width { grid-column: 1 / -1; }
+.card-header { 
+    display: flex; justify-content: space-between; align-items: center; 
+    margin-bottom: 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.1); 
+    padding-bottom: 1rem;
+}
+.card-header select { padding: 0.5rem 1rem; border-radius: 12px; border: 1px solid rgba(255,255,255,0.3); background: rgba(255,255,255,0.2); color: white; }
+
+table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
+th, td { padding: 1rem 0.5rem; text-align: left; cursor: pointer; transition: all 0.2s; }
+th { font-weight: 600; color: rgba(255,255,255,0.9); }
+tr:hover td { background: rgba(255,255,255,0.1); transform: translateX(5px); }
+
+.segment-metrics { display: flex; flex-direction: column; gap: 1.5rem; }
+.segment { display: flex; justify-content: space-between; align-items: center; padding: 1.5rem; background: rgba(255,255,255,0.1); border-radius: 12px; }
+.segment-value { font-size: 2rem; font-weight: 700; }
+
+.trend-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+.trend-card { padding: 2rem; background: rgba(255,255,255,0.1); border-radius: 16px; text-align: center; }
+.trend-card h4 { margin-bottom: 1rem; opacity: 0.9; }
+.prediction, .highlight { font-size: 2rem; font-weight: 800; margin-bottom: 0.5rem; }
+.prediction .positive { color: #10b981; }
+.warning { color: #f59e0b !important; }
+
+.download-section { background: rgba(255,255,255,0.1); border-radius: 20px; padding: 2.5rem; }
+.download-section h3 { text-align: center; margin-bottom: 2rem; }
+.download-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+.download-item { 
+    display: flex; align-items: center; gap: 1rem; padding: 1.5rem; 
+    background: rgba(255,255,255,0.15); border-radius: 16px; cursor: pointer; 
+    transition: all 0.3s;
+}
+.download-item:hover { background: rgba(255,255,255,0.25); transform: translateY(-3px); box-shadow: 0 15px 30px rgba(0,0,0,0.2); }
+.download-item i { font-size: 2rem; opacity: 0.9; }
+.download-item h4 { margin: 0 0 0.25rem 0; }
+
+@media (max-width: 1024px) { .reports-grid { grid-template-columns: 1fr; } }
+@media (max-width: 768px) { .executive-summary { grid-template-columns: 1fr; } }
+</style>
+
+<script>
+function exportReport(type) {
+    notifSlide.addBuy(`${type.toUpperCase()} Report`, 19, '{{ session.username }}!');
+    // Simulate export
+    setTimeout(() => alert(`📥 ${type.toUpperCase()} report downloaded!`), 1000);
+}
+
+function filterChannel(channel) {
+    // Simulate filtering
+    console.log('Filtering by:', channel);
+}
+</script>
+
+{% endblock %}

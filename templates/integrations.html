@@ -1,0 +1,194 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="dashboard-wrapper">
+    <!-- Enhanced Hero Header -->
+    <div class="dashboard-header" style="background: rgba(255,255,255,0.1); border-radius: 24px; padding: 2.5rem; margin-bottom: 2.5rem; backdrop-filter: blur(20px);">
+        <div class="page-title">
+            <h1 style="font-size: 3rem; background: linear-gradient(135deg, #fff, rgba(255,255,255,0.8)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                <i class="fas fa-plug-circle me-3" style="color: #10b981;"></i>Integrations Hub
+            </h1>
+            <p style="font-size: 1.3rem; color: rgba(255,255,255,0.9); margin-top: 0.5rem;">Connect 50+ marketing tools • Real-time data sync • Enterprise security</p>
+        </div>
+        <div style="display: flex; gap: 1rem;">
+            <a href="#" class="btn" style="background: linear-gradient(135deg, #10b981, #059669); box-shadow: 0 10px 30px rgba(16,185,129,0.4);">+ Add Integration</a>
+            <a href="#" class="btn btn-secondary" style="background: linear-gradient(135deg, #6366f1, #4f46e5);">API Docs</a>
+        </div>
+    </div>
+
+    <!-- Stats Row - Perfectly Aligned -->
+    <div class="metrics-row" style="margin-bottom: 3rem;">
+        <div class="metric-card" style="background: linear-gradient(135deg, rgba(16,185,129,0.2), rgba(34,197,94,0.1)); border: 1px solid rgba(16,185,129,0.3);">
+            <div class="metric-icon" style="color: #10b981; background: rgba(16,185,129,0.2); width: 80px; height: 80px; border-radius: 20px; margin: 0 auto 1rem;">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <div class="metric-value" style="color: #10b981;">8/24</div>
+            <div class="metric-label">Active Integrations</div>
+            <div class="metric-change positive">+3 this week</div>
+        </div>
+        <div class="metric-card" style="background: linear-gradient(135deg, rgba(99,102,241,0.2), rgba(139,92,246,0.1)); border: 1px solid rgba(99,102,241,0.3);">
+            <div class="metric-icon" style="color: #6366f1; background: rgba(99,102,241,0.2); width: 80px; height: 80px; border-radius: 20px; margin: 0 auto 1rem;">
+                <i class="fas fa-database"></i>
+            </div>
+            <div class="metric-value">47.2K</div>
+            <div class="metric-label">Records Synced</div>
+            <div class="metric-change positive">+12.4% today</div>
+        </div>
+        <div class="metric-card" style="background: linear-gradient(135deg, rgba(245,158,11,0.2), rgba(251,191,36,0.1)); border: 1px solid rgba(245,158,11,0.3);">
+            <div class="metric-icon" style="color: #f59e0b; background: rgba(245,158,11,0.2); width: 80px; height: 80px; border-radius: 20px; margin: 0 auto 1rem;">
+                <i class="fas fa-bolt"></i>
+            </div>
+            <div class="metric-value">289ms</div>
+            <div class="metric-label">Avg Sync Time</div>
+            <div class="metric-change">⚡ Fast</div>
+        </div>
+    </div>
+
+    <!-- Main Content Grid - Perfect 2-Column Layout -->
+    <div class="content-row" style="margin-bottom: 3rem;">
+        <!-- Left: Integration Cards (2/3 width) -->
+        <div style="grid-column: span 2;">
+            <div class="content-card" style="background: rgba(255,255,255,0.08); border-radius: 24px; border: 1px solid rgba(255,255,255,0.1);">
+                <div class="card-header">
+                    <h3 style="display: flex; align-items: center; gap: 0.75rem;">
+                        <i class="fas fa-th-large" style="color: #10b981;"></i> All Integrations
+                    </h3>
+                    <div style="display: flex; gap: 1rem; align-items: center;">
+                        <select style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: white; padding: 0.5rem 1rem; border-radius: 12px;">
+                            <option>All Categories</option>
+                            <option>CRM</option>
+                            <option>Email</option>
+                            <option>Ecommerce</option>
+                            <option>Analytics</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Enhanced Integration Grid -->
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 1.5rem;">
+                    
+                    <!-- HubSpot Card -->
+                    <div class="recommendation priority" style="padding: 2rem; border-radius: 20px; border: 1px solid rgba(16,185,129,0.3); position: relative; overflow: hidden;">
+                        <div style="position: absolute; top: 1rem; right: 1rem; background: rgba(16,185,129,0.2); padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem; font-weight: 600; color: #10b981;">LIVE</div>
+                        <div style="display: flex; gap: 1.5rem; align-items: flex-start;">
+                            <div style="width: 70px; height: 70px; background: linear-gradient(135deg, #ff7a59, #ff5a5f); border-radius: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                                <i class="fab fa-hubspot" style="font-size: 1.8rem; color: white;"></i>
+                            </div>
+                            <div style="flex: 1;">
+                                <h4 style="margin: 0 0 0.5rem 0; font-size: 1.4rem;">HubSpot CRM</h4>
+                                <p style="color: rgba(255,255,255,0.9); margin: 0 0 1rem 0; line-height: 1.6;">Syncs customer profiles, engagement scores, and purchase history. Auto-segments high-value customers.</p>
+                                <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                                    <span style="background: rgba(16,185,129,0.2); color: #10b981; padding: 0.4rem 1rem; border-radius: 20px; font-size: 0.85rem; font-weight: 600;">✓ 2,847 contacts</span>
+                                    <span style="background: rgba(34,197,94,0.2); color: #22c55e; padding: 0.4rem 1rem; border-radius: 20px; font-size: 0.85rem;">15min sync</span>
+                                </div>
+                            </div>
+                            <div style="display: flex; flex-direction: column; gap: 0.75rem; min-width: 140px;">
+                                <a href="#" class="action-btn primary" style="padding: 0.75rem 1.25rem; font-size: 0.9rem;">Manage</a>
+                                <a href="#" class="btn btn-secondary" style="padding: 0.5rem 1rem; font-size: 0.8rem;">View Data</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Mailchimp Card -->
+                    <div class="recommendation priority" style="padding: 2rem; border-radius: 20px; border: 1px solid rgba(16,185,129,0.3);">
+                        <div style="position: absolute; top: 1rem; right: 1rem; background: rgba(16,185,129,0.2); padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem; font-weight: 600; color: #10b981;">LIVE</div>
+                        <div style="display: flex; gap: 1.5rem; align-items: flex-start;">
+                            <div style="width: 70px; height: 70px; background: linear-gradient(135deg, #f04523, #bb2d3b); border-radius: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                                <i class="fas fa-envelope" style="font-size: 1.8rem; color: white;"></i>
+                            </div>
+                            <div style="flex: 1;">
+                                <h4 style="margin: 0 0 0.5rem 0; font-size: 1.4rem;">Mailchimp</h4>
+                                <p style="color: rgba(255,255,255,0.9); margin: 0 0 1rem 0; line-height: 1.6;">AI-powered customer segments for email campaigns. Engagement score → list membership.</p>
+                                <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                                    <span style="background: rgba(16,185,129,0.2); color: #10b981; padding: 0.4rem 1rem; border-radius: 20px; font-size: 0.85rem;">✓ 12 campaigns</span>
+                                    <span style="background: rgba(34,197,94,0.2); color: #22c55e; padding: 0.4rem 1rem; border-radius: 20px; font-size: 0.85rem;">Auto-sync</span>
+                                </div>
+                            </div>
+                            <div style="display: flex; flex-direction: column; gap: 0.75rem; min-width: 140px;">
+                                <a href="#" class="action-btn primary" style="padding: 0.75rem 1.25rem; font-size: 0.9rem;">Manage</a>
+                                <a href="#" class="btn btn-secondary" style="padding: 0.5rem 1rem; font-size: 0.8rem;">Segments</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Google Analytics (Paused) -->
+                    <div class="recommendation" style="padding: 2rem; border-radius: 20px; border: 1px solid rgba(99,102,241,0.3); background: rgba(99,102,241,0.05);">
+                        <div style="position: absolute; top: 1rem; right: 1rem; background: rgba(99,102,241,0.2); padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem; color: #6366f1;">PAUSED</div>
+                        <div style="display: flex; gap: 1.5rem; align-items: flex-start;">
+                            <div style="width: 70px; height: 70px; background: linear-gradient(135deg, #4285f4, #34a853); border-radius: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                                <i class="fab fa-google" style="font-size: 1.8rem; color: white;"></i>
+                            </div>
+                            <div style="flex: 1;">
+                                <h4 style="margin: 0 0 0.5rem 0; font-size: 1.4rem;">Google Analytics</h4>
+                                <p style="color: rgba(255,255,255,0.9); margin: 0 0 1rem 0; line-height: 1.6;">Enhanced event tracking & campaign attribution. Custom dimensions for engagement scores.</p>
+                            </div>
+                            <button class="action-btn secondary" style="padding: 1rem 1.5rem;">Resume</button>
+                        </div>
+                    </div>
+
+                    <!-- Shopify Card -->
+                    <div class="recommendation opportunity" style="padding: 2rem; border-radius: 20px; border: 2px dashed rgba(245,158,11,0.5);">
+                        <div style="display: flex; gap: 1.5rem; align-items: flex-start;">
+                            <div style="width: 70px; height: 70px; background: linear-gradient(135deg, #7c5fe9, #5a31f4); border-radius: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                                <i class="fab fa-shopify" style="font-size: 1.8rem; color: white;"></i>
+                            </div>
+                            <div style="flex: 1;">
+                                <h4 style="margin: 0 0 0.5rem 0; font-size: 1.4rem;">Shopify</h4>
+                                <p style="color: rgba(255,255,255,0.9); margin: 0 0 1rem 0; line-height: 1.6;">Real-time order sync, abandoned cart recovery, customer segmentation by LTV.</p>
+                            </div>
+                            <a href="#" class="action-btn premium" style="padding: 1rem 1.5rem;">Connect Store</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Actions & API Section -->
+    <div class="bottom-row">
+        <!-- Quick Connect -->
+        <div class="content-card" style="background: rgba(255,255,255,0.08); border-radius: 24px; border: 1px solid rgba(255,255,255,0.1);">
+            <div class="card-header">
+                <h3 style="display: flex; align-items: center; gap: 0.75rem;"><i class="fas fa-bolt" style="color: #f59e0b;"></i> Quick Connect</h3>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem;">
+                <a href="#" class="action-btn premium" style="text-decoration: none; padding: 1.5rem; border-radius: 16px; display: flex; align-items: center; gap: 1rem;">
+                    <i class="fab fa-zapier" style="font-size: 1.5rem; color: white;"></i>
+                    <div>Zapiier (5K+ apps)</div>
+                </a>
+                <a href="#" class="action-btn primary" style="text-decoration: none; padding: 1.5rem; border-radius: 16px; display: flex; align-items: center; gap: 1rem;">
+                    <i class="fas fa-layer-group" style="font-size: 1.5rem; color: white;"></i>
+                    <div>Segment CDP</div>
+                </a>
+                <a href="#" class="action-btn secondary" style="text-decoration: none; padding: 1.5rem; border-radius: 16px; display: flex; align-items: center; gap: 1rem;">
+                    <i class="fas fa-sliders-h" style="font-size: 1.5rem; color: #333;"></i>
+                    <div>Custom Webhook</div>
+                </a>
+            </div>
+        </div>
+
+        <!-- API & Security -->
+        <div class="content-card" style="background: rgba(255,255,255,0.08); border-radius: 24px; border: 1px solid rgba(255,255,255,0.1);">
+            <h3 style="margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.75rem;"><i class="fas fa-shield-alt" style="color: #10b981;"></i> Enterprise Security</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem;">
+                <div>
+                    <div style="font-size: 2rem; font-weight: 700; color: #10b981; margin-bottom: 0.5rem;">OAuth 2.0</div>
+                    <div style="color: rgba(255,255,255,0.8);">Enterprise SSO</div>
+                </div>
+                <div>
+                    <div style="font-size: 2rem; font-weight: 700; color: #6366f1; margin-bottom: 0.5rem;">SOC 2</div>
+                    <div style="color: rgba(255,255,255,0.8);">Type II Compliant</div>
+                </div>
+                <div>
+                    <div style="font-size: 2rem; font-weight: 700; color: #f59e0b; margin-bottom: 0.5rem;">AES-256</div>
+                    <div style="color: rgba(255,255,255,0.8);">Data Encryption</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.action-btn { color: white !important; text-decoration: none; transition: all 0.3s; }
+.action-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(0,0,0,0.2) !important; }
+</style>
+{% endblock %}

@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block title %}Home - AI Marketing Pro{% endblock %}
+{% block content %}
+
+<!-- INSIDER ONE: Main tracking script -->
+<script async src="//yourPartnerName.api.useinsider.com/ins.js?id=YOUR_PARTNER_ID"></script>
+
+<div class="hero">
+    <h1 class="hero-title">Revolutionize Marketing with AI Personalization</h1>
+    <p>Advanced AI analyzes behavior, predicts trends, and automates hyper-personalized campaigns at scale.</p>
+    <!-- Updated button with buy tracking -->
+    <button class="btn" id="startTrialBtn" onclick="notifSlide.addBuy('AI Marketing Pro Trial', 0, 'You!')">Start Free Trial</button>
+</div>
+
+<div class="card">
+    <h2>Key Features</h2>
+    <ul>
+        <li><i class="fas fa-brain"></i> Real-time Customer Segmentation & Predictions</li>
+        <li><i class="fas fa-robot"></i> AI Chatbots for Engagement</li>
+        <li><i class="fas fa-chart-line"></i> Dynamic A/B Testing & Optimization</li>
+        <li><i class="fas fa-bolt"></i> Predictive Content Generation</li>
+    </ul>
+</div>
+
+<!-- INSIDER ONE + NOTIFICATION SLIDE Tracking -->
+<script>
+window.InsiderQueue = window.InsiderQueue || [];
+
+// Track Free Trial button clicks (buy/sell equivalent + notification slide)
+document.getElementById('startTrialBtn').addEventListener('click', function() {
+    // Insider One tracking
+    InsiderQueue.push(['trackEvent', {
+        name: 'trial_start',
+        properties: {
+            product: 'AI Marketing Pro',
+            price: 0,
+            plan: 'free_trial'
+        }
+    }]);
+    
+    // Notification slide (already triggered by onclick)
+    console.log('✅ Trial tracked + Slide notification triggered');
+});
+
+// Enable personalized notifications
+function enableNotifications() {
+    InsiderQueue.push(['subscribePush']);
+}
+
+// Track page view for personalization
+InsiderQueue.push(['trackPageView', {
+    pageType: 'homepage',
+    content: 'AI Marketing Pro landing'
+}]);
+
+// Auto-trigger notifications after 10 seconds
+setTimeout(enableNotifications, 10000);
+</script>
+
+{% endblock %}

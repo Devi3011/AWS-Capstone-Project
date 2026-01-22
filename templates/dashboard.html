@@ -1,0 +1,135 @@
+{% extends "base.html" %}
+{% block title %}Dashboard - AI Marketing Pro{% endblock %}
+{% block content %}
+
+<div class="dashboard-wrapper">
+    <div class="dashboard-header">
+        <div class="page-title">
+            <h1>📊 Marketing Dashboard</h1>
+            <p>Real-time insights • {{ total_campaigns|default(0) }} active campaigns</p>
+        </div>
+        <div class="header-actions">
+            <button class="btn" onclick="location.reload()">
+                <i class="fas fa-sync-alt"></i> Refresh
+            </button>
+            <button class="btn" onclick="notifSlide.addBuy('Live Data Export', 19, 'You!')">
+                💾 Export Data ($19)
+            </button>
+        </div>
+    </div>
+
+    <div class="metrics-row">
+        <div class="metric-card">
+            <div class="metric-icon">👥</div>
+            <div class="metric-value">{{ total_customers|default(0) }}</div>
+            <div class="metric-label">Total Customers</div>
+            <div class="metric-change positive">+12% MoM</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-icon">📈</div>
+            <div class="metric-value">{{ ((avg_engagement|default(0))*100)|round(1) }}%</div>
+            <div class="metric-label">Avg Engagement</div>
+            <div class="metric-change positive">Top 15% Industry</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-icon">💰</div>
+            <div class="metric-value">$47.2K</div>
+            <div class="metric-label">MRR</div>
+            <div class="metric-change positive">+28% MoM</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-icon">🎯</div>
+            <div class="metric-value">{{ total_campaigns|default(0) }}</div>
+            <div class="metric-label">Active Campaigns</div>
+            <div class="metric-change">3 this week</div>
+        </div>
+    </div>
+
+    <div class="content-row">
+        <div class="content-card">
+            <div class="card-header">
+                <h3>🎯 Campaign Performance</h3>
+                <span class="trend positive">+18% vs last month</span>
+            </div>
+            <table>
+                <tr><th>Campaign</th><th>Open</th><th>CTR</th><th>ROI</th></tr>
+                <tr onclick="notifSlide.addBuy('Product Launch Campaign', 199, 'Marketing Team')">
+                    <td>Product Launch</td><td>42.3%</td><td>8.7%</td><td>4.2x</td>
+                </tr>
+                <tr onclick="notifSlide.addBuy('Email Nurture Campaign', 149, 'Marketing Team')">
+                    <td>Email Nurture</td><td>38.1%</td><td>6.2%</td><td>3.8x</td>
+                </tr>
+                <tr onclick="notifSlide.addBuy('Winback Campaign', 99, 'Marketing Team')">
+                    <td>Winback</td><td>29.4%</td><td>4.1%</td><td>2.9x</td>
+                </tr>
+            </table>
+        </div>
+        <div class="content-card">
+            <div class="card-header">
+                <h3>💵 Revenue Overview</h3>
+            </div>
+            <div class="revenue-grid">
+                <div class="revenue-card">
+                    <div class="revenue-value">$127K</div>
+                    <div>Total Revenue</div>
+                </div>
+                <div class="revenue-card">
+                    <div class="revenue-value">3.7x</div>
+                    <div>ROAS</div>
+                </div>
+                <div class="revenue-card">
+                    <div class="revenue-value">$89</div>
+                    <div>CPA</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bottom-row">
+        <div class="content-card">
+            <div class="card-header">
+                <h3>💡 AI Recommendations</h3>
+            </div>
+            <div class="recommendations">
+                <div class="recommendation priority">
+                    <div class="rec-icon">✅</div>
+                    <div class="rec-content">
+                        <h4>High Priority</h4>
+                        <p>Target top {{ total_customers|default(0) }} customers with upsell offers (85%+ predicted)</p>
+                    </div>
+                </div>
+                <div class="recommendation opportunity">
+                    <div class="rec-icon">⚠️</div>
+                    <div class="rec-content">
+                        <h4>Opportunity</h4>
+                        <p>Winback campaigns at 29% open rate - AI predicts 2x improvement</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content-card actions-card">
+            <h3>⚡ Quick Actions</h3>
+            <div class="action-buttons">
+                <button class="action-btn primary" onclick="notifSlide.addBuy('AI Demo Access', 49, 'You!')">
+                    🤖 Test AI Demo <span>$49</span>
+                </button>
+                <button class="action-btn secondary" onclick="notifSlide.addBuy('Reports Pack', 29, 'You!')">
+                    📊 Reports Pack <span>$29</span>
+                </button>
+                <button class="action-btn danger" onclick="notifSlide.addSell('Basic Plan', 99, 'You!')">
+                    ❌ Cancel Plan <span>-$99</span>
+                </button>
+                <button class="action-btn premium" onclick="notifSlide.addBuy('Enterprise', 299, 'You!')">
+                    💎 Enterprise <span>$299</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+window.InsiderQueue = window.InsiderQueue || [];
+InsiderQueue.push(['trackPageView', {pageType: 'dashboard', customers: {{ total_customers|default(0) }}}]);
+</script>
+
+{% endblock %}

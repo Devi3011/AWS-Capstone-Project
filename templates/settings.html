@@ -1,0 +1,266 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="dashboard-wrapper">
+    <!-- Enhanced Settings Header -->
+    <div class="dashboard-header" style="background: rgba(255,255,255,0.1); border-radius: 24px; padding: 2.5rem; margin-bottom: 2.5rem; backdrop-filter: blur(20px);">
+        <div class="page-title">
+            <h1 style="font-size: 3rem; background: linear-gradient(135deg, #fff, rgba(255,255,255,0.8)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                <i class="fas fa-cog me-3" style="color: #f59e0b;"></i>Settings & Configuration
+            </h1>
+            <p style="font-size: 1.2rem; color: rgba(255,255,255,0.9);">Customize your AI Marketing Pro experience</p>
+        </div>
+        <div style="display: flex; gap: 1rem;">
+            <button form="settings-form" type="submit" class="btn" style="background: linear-gradient(135deg, #10b981, #059669); box-shadow: 0 10px 30px rgba(16,185,129,0.4);">💾 Save All Changes</button>
+            <a href="#" class="btn btn-secondary" style="background: linear-gradient(135deg, #6b7280, #4b5563);">↻ Reset to Defaults</a>
+        </div>
+    </div>
+
+    <!-- Settings Stats -->
+    <div class="metrics-row" style="margin-bottom: 3rem;">
+        <div class="metric-card" style="background: linear-gradient(135deg, rgba(16,185,129,0.2), rgba(34,197,94,0.1));">
+            <div class="metric-icon" style="color: #10b981;">✓</div>
+            <div class="metric-value">12/15</div>
+            <div class="metric-label">Optimized Settings</div>
+        </div>
+        <div class="metric-card" style="background: linear-gradient(135deg, rgba(245,158,11,0.2), rgba(251,191,36,0.1));">
+            <div class="metric-icon" style="color: #f59e0b;">⚙️</div>
+            <div class="metric-value">87%</div>
+            <div class="metric-label">Performance Score</div>
+        </div>
+        <div class="metric-card" style="background: linear-gradient(135deg, rgba(99,102,241,0.2), rgba(139,92,246,0.1));">
+            <div class="metric-icon" style="color: #6366f1;">🔒</div>
+            <div class="metric-value">2FA</div>
+            <div class="metric-label">Security Level</div>
+        </div>
+    </div>
+
+    <form id="settings-form">
+        <!-- 3-Column Perfect Layout -->
+        <div class="content-row" style="margin-bottom: 3rem;">
+            <!-- Account Settings (Left Column) -->
+            <div class="content-card" style="background: rgba(255,255,255,0.08); border-radius: 24px;">
+                <div class="card-header">
+                    <h3 style="display: flex; align-items: center; gap: 0.75rem;"><i class="fas fa-user-circle" style="color: #10b981;"></i> Account Settings</h3>
+                </div>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+                    <!-- Profile Section -->
+                    <div>
+                        <div class="form-group" style="margin-bottom: 1.5rem;">
+                            <label style="font-weight: 600; margin-bottom: 0.5rem; display: block;">Full Name</label>
+                            <input type="text" value="{{ session.username|title }} Sharma" style="width: 100%; padding: 1rem; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: 12px; color: white; font-size: 1rem;">
+                        </div>
+                        <div class="form-group" style="margin-bottom: 1.5rem;">
+                            <label style="font-weight: 600; margin-bottom: 0.5rem; display: block;">Email Address</label>
+                            <input type="email" value="admin@aimarketing.com" style="width: 100%; padding: 1rem; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: 12px; color: white; font-size: 1rem;">
+                        </div>
+                    </div>
+
+                    <!-- Security Section -->
+                    <div>
+                        <div class="form-group" style="margin-bottom: 1.5rem;">
+                            <label style="font-weight: 600; margin-bottom: 0.5rem; display: block;">Password</label>
+                            <input type="password" placeholder="••••••••" style="width: 100%; padding: 1rem; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: 12px; color: white;">
+                            <a href="#" style="font-size: 0.9rem; color: #6366f1; text-decoration: none; margin-top: 0.5rem; display: inline-block;">Change Password →</a>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 1rem; background: rgba(99,102,241,0.1); padding: 1rem; border-radius: 12px; margin-top: 1rem;">
+                            <label style="font-weight: 600; margin: 0; flex: 1;">Enable 2FA</label>
+                            <label class="switch">
+                                <input type="checkbox" checked>
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Notifications & Preferences (Right Column) -->
+            <div class="content-card" style="background: rgba(255,255,255,0.08); border-radius: 24px;">
+                <div class="card-header">
+                    <h3 style="display: flex; align-items: center; gap: 0.75rem;"><i class="fas fa-bell" style="color: #f59e0b;"></i> Notifications & Preferences</h3>
+                </div>
+                
+                <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+                    <!-- Email Notifications -->
+                    <div style="background: rgba(255,255,255,0.05); padding: 1.5rem; border-radius: 16px;">
+                        <h4 style="margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">📧 Email Notifications</h4>
+                        <label style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0.75rem; cursor: pointer;">
+                            <input type="checkbox" checked> Campaign performance alerts
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0.75rem; cursor: pointer;">
+                            <input type="checkbox"> New customer insights
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 1rem; cursor: pointer;">
+                            <input type="checkbox" checked> Weekly reports
+                        </label>
+                    </div>
+
+                    <!-- Slack/Discord -->
+                    <div style="background: rgba(255,255,255,0.05); padding: 1.5rem; border-radius: 16px;">
+                        <h4 style="margin-bottom: 1rem;">💬 Team Alerts</h4>
+                        <div style="display: flex; gap: 1rem; margin-bottom: 1rem;">
+                            <div style="flex: 1;">
+                                <label style="font-weight: 600; margin-bottom: 0.5rem; display: block;">Slack Webhook</label>
+                                <input type="url" placeholder="https://hooks.slack.com/..." style="width: 100%; padding: 0.75rem; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: 8px; color: white;">
+                            </div>
+                            <div style="flex: 1;">
+                                <label style="font-weight: 600; margin-bottom: 0.5rem; display: block;">Discord Webhook</label>
+                                <input type="url" placeholder="https://discord.com/api/..." style="width: 100%; padding: 0.75rem; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: 8px; color: white;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- AI & Performance Settings -->
+        <div class="content-row">
+            <!-- AI Configuration -->
+            <div class="content-card" style="background: rgba(255,255,255,0.08); border-radius: 24px; grid-column: span 1;">
+                <div class="card-header">
+                    <h3 style="display: flex; align-items: center; gap: 0.75rem;"><i class="fas fa-robot" style="color: #6366f1;"></i> AI Configuration</h3>
+                </div>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                    <div>
+                        <label style="font-weight: 600; margin-bottom: 0.5rem; display: block;">AI Model Preference</label>
+                        <select style="width: 100%; padding: 1rem; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: 12px; color: white; font-size: 1rem;">
+                            <option>GPT-4o (Recommended)</option>
+                            <option>Claude 3.5 Sonnet</option>
+                            <option>Llama 3.1 405B</option>
+                            <option>Custom Fine-tuned</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label style="font-weight: 600; margin-bottom: 0.5rem; display: block;">Max Tokens</label>
+                        <input type="range" min="1000" max="32000" value="8000" style="width: 100%;">
+                        <span style="color: rgba(255,255,255,0.8); font-size: 0.9rem;">8,000 tokens</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 1rem;">
+                        <label style="font-weight: 600; margin: 0; white-space: nowrap;">Auto-generate campaigns</label>
+                        <label class="switch">
+                            <input type="checkbox" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Billing & Usage -->
+            <div class="content-card" style="background: rgba(255,255,255,0.08); border-radius: 24px;">
+                <div class="card-header">
+                    <h3 style="display: flex; align-items: center; gap: 0.75rem;"><i class="fas fa-credit-card" style="color: #f59e0b;"></i> Billing & Usage</h3>
+                </div>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem;">
+                    <div>
+                        <div style="font-size: 2.5rem; font-weight: 700; color: #10b981; margin-bottom: 0.5rem;">$247</div>
+                        <div style="color: rgba(255,255,255,0.8);">Current Month</div>
+                    </div>
+                    <div>
+                        <div style="font-size: 2.5rem; font-weight: 700; color: #6366f1; margin-bottom: 0.5rem;">Pro</div>
+                        <div style="color: rgba(255,255,255,0.8);">Plan Status</div>
+                        <a href="#" style="background: linear-gradient(135deg, #8b5cf6, #a855f7); color: white; padding: 0.75rem 1.5rem; border-radius: 16px; text-decoration: none; margin-top: 1rem; display: inline-block;">Upgrade →</a>
+                    </div>
+                    <div>
+                        <div style="font-size: 2.5rem; font-weight: 700; color: #f59e0b; margin-bottom: 0.5rem;">94%</div>
+                        <div style="color: rgba(255,255,255,0.8);">Usage</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Advanced Settings -->
+        <div class="content-row">
+            <div class="content-card" style="background: rgba(255,255,255,0.08); border-radius: 24px; grid-column: span 2;">
+                <div class="card-header">
+                    <h3 style="display: flex; align-items: center; gap: 0.75rem;"><i class="fas fa-sliders-h" style="color: #ef4444;"></i> Advanced Settings</h3>
+                </div>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; padding: 2rem 0;">
+                    <div>
+                        <h4 style="margin-bottom: 1rem;">📊 Data Retention</h4>
+                        <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                            <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                                <input type="radio" name="retention" checked> 30 days
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                                <input type="radio" name="retention"> 90 days
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                                <input type="radio" name="retention"> Forever
+                            </label>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 style="margin-bottom: 1rem;">🌍 Region</h4>
+                        <select style="width: 100%; padding: 1rem; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: 12px; color: white;">
+                            <option>US East (Fastest)</option>
+                            <option>US West</option>
+                            <option>EU Central</option>
+                            <option>Asia Pacific</option>
+                        </select>
+                    </div>
+                    <div>
+                        <h4 style="margin-bottom: 1rem;">🔄 Auto-backup</h4>
+                        <div style="display: flex; align-items: center; gap: 1rem;">
+                            <label class="switch">
+                                <input type="checkbox" checked>
+                                <span class="slider"></span>
+                            </label>
+                            <span>Daily at 2AM UTC</span>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 style="margin-bottom: 1rem;">🚀 Beta Features</h4>
+                        <label class="switch">
+                            <input type="checkbox">
+                            <span class="slider"></span>
+                        </label>
+                        <span>Enable experimental AI features</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<style>
+/* Custom Switch Styles */
+.switch { position: relative; display: inline-block; width: 60px; height: 34px; }
+.switch input { opacity: 0; width: 0; height: 0; }
+.slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; border-radius: 34px; }
+.slider:before { position: absolute; content: ""; height: 26px; width: 26px; left: 4px; bottom: 4px; background-color: white; transition: .4s; border-radius: 50%; }
+input:checked + .slider { background-color: #10b981; }
+input:checked + .slider:before { transform: translateX(26px); }
+
+/* Form Enhancements */
+input:focus, select:focus { outline: none; border-color: #6366f1; box-shadow: 0 0 0 3px rgba(99,102,241,0.1); }
+.form-group input::placeholder { color: rgba(255,255,255,0.5); }
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Smooth animations for form elements
+    const inputs = document.querySelectorAll('input, select');
+    inputs.forEach(input => {
+        input.addEventListener('focus', function() {
+            this.parentElement.style.transform = 'translateY(-2px)';
+        });
+        input.addEventListener('blur', function() {
+            this.parentElement.style.transform = 'translateY(0)';
+        });
+    });
+
+    // Save confirmation
+    document.getElementById('settings-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        // Simulate save
+        const btn = document.querySelector('button[type="submit"]');
+        const originalText = btn.innerHTML;
+        btn.innerHTML = '✅ Saved!';
+        btn.style.background = 'linear-gradient(135deg, #10b981, #059669)';
+        setTimeout(() => {
+            btn.innerHTML = originalText;
+        }, 2000);
+    });
+});
+</script>
+{% endblock %}

@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ title or "🤖 AI Marketing Platform" }}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* BASE STYLES */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #fff;
+        }
+        .nav { 
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(20px);
+            padding: 1rem 2rem; 
+            position: sticky; 
+            top: 0; 
+            z-index: 100;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+        }
+        .nav-content { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.8rem; font-weight: 700; background: linear-gradient(45deg, #ff6b6b, #4ecdc4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .nav-links { display: flex; gap: 0.5rem; }
+        .nav-links a { 
+            color: rgba(255,255,255,0.9); 
+            text-decoration: none; 
+            padding: 0.5rem 1rem; 
+            border-radius: 12px; 
+            transition: all 0.3s; 
+            font-weight: 500; 
+        }
+        .nav-links a:hover, .nav-links a.active { 
+            background: rgba(255,255,255,0.2); 
+            transform: translateY(-2px); 
+        }
+        .btn { 
+            background: linear-gradient(45deg, #ff6b6b, #feca57); 
+            color: white; 
+            padding: 0.75rem 1.5rem; 
+            border: none; 
+            border-radius: 16px; 
+            cursor: pointer; 
+            font-weight: 600; 
+            transition: all 0.3s; 
+            box-shadow: 0 8px 32px rgba(255,107,107,0.4); 
+            display: inline-block; 
+            text-decoration: none; 
+        }
+        .btn:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(255,107,107,0.6); }
+        .btn-secondary { background: linear-gradient(45deg, #a8edea, #fed6e3); color: #333; box-shadow: 0 8px 32px rgba(168,237,234,0.4); }
+        .btn-danger { background: linear-gradient(45deg, #ff416c, #ff4b2b); box-shadow: 0 8px 32px rgba(255,65,108,0.4); }
+        .container { max-width: 1400px; margin: 2rem auto; padding: 2rem; }
+
+        /* DASHBOARD CLASSES */
+        .dashboard-wrapper { max-width: 1400px; margin: 0 auto; padding: 2rem; }
+        .dashboard-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2.5rem; flex-wrap: wrap; gap: 1rem; }
+        .page-title h1 { font-size: 2.5rem; margin: 0 0 0.5rem 0; }
+        .page-title p { color: rgba(255,255,255,0.8); margin: 0; }
+        .metrics-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-bottom: 2.5rem; }
+        .metric-card { text-align: center; padding: 2rem; background: rgba(255,255,255,0.15); border-radius: 20px; }
+        .metric-icon { font-size: 2.5rem; margin-bottom: 1rem; opacity: 0.9; }
+        .metric-value { font-size: 3rem; font-weight: 700; margin-bottom: 0.5rem; }
+        .metric-label { font-size: 1.1rem; margin-bottom: 0.5rem; opacity: 0.9; }
+        .metric-change { font-size: 0.9rem; font-weight: 500; }
+        .metric-change.positive { color: #10b981; }
+        .content-row, .bottom-row { display: grid; grid-template-columns: 2fr 1fr; gap: 2rem; margin-bottom: 2.5rem; }
+        .content-card { background: rgba(255,255,255,0.15); border-radius: 20px; padding: 2rem; }
+        .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 1rem; }
+        .revenue-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+        .revenue-card { text-align: center; padding: 1.5rem; }
+        .revenue-value { font-size: 2rem; font-weight: 700; margin-bottom: 0.25rem; }
+        .recommendations { display: flex; flex-direction: column; gap: 1.5rem; }
+        .recommendation { display: flex; gap: 1rem; padding: 1.5rem; border-radius: 12px; cursor: pointer; }
+        .recommendation.priority { background: rgba(34,197,94,0.2); border-left: 4px solid #10b981; }
+        .recommendation.opportunity { background: rgba(254,202,87,0.3); border-left: 4px solid #feca57; }
+        .rec-icon { font-size: 2rem; width: 50px; text-align: center; }
+        .action-buttons { display: flex; flex-direction: column; gap: 1rem; }
+        .action-btn { display: flex; justify-content: space-between; align-items: center; padding: 1rem 1.5rem; border-radius: 16px; font-weight: 600; border: none; cursor: pointer; transition: all 0.3s; }
+        .action-btn span { font-size: 0.9rem; opacity: 0.9; font-weight: 500; }
+        .action-btn.primary { background: linear-gradient(45deg, #ff6b6b, #feca57); }
+        .action-btn.secondary { background: linear-gradient(45deg, #a8edea, #fed6e3); color: #333; }
+        .action-btn.danger { background: linear-gradient(45deg, #ef4444, #dc2626); }
+        .action-btn.premium { background: linear-gradient(45deg, #8b5cf6, #a855f7); box-shadow: 0 10px 30px rgba(139,92,246,0.4); }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { padding: 1rem; text-align: left; }
+        tr:hover td { background: rgba(255,255,255,0.1); }
+
+        /* FLASH MESSAGES */
+        .flash-success { background: rgba(16,185,129,0.2); color: #10b981; padding: 1rem 1.5rem; border-radius: 12px; margin-bottom: 1rem; border-left: 4px solid #10b981; }
+        .flash-error { background: rgba(239,68,68,0.2); color: #ef4444; padding: 1rem 1.5rem; border-radius: 12px; margin-bottom: 1rem; border-left: 4px solid #ef4444; }
+
+        /* NOTIFICATION SLIDE */
+        .notification-slide { position: fixed; bottom: 20px; right: 20px; width: 380px; height: 420px; background: linear-gradient(135deg, #10b981 0%, #059669 100%); border-radius: 20px; box-shadow: 0 25px 50px rgba(16,185,129,0.4); z-index: 10001; transform: translateX(100%); transition: all 0.4s; overflow: hidden; }
+        .notification-slide.show { transform: translateX(0); }
+        .slide-header { background: rgba(255,255,255,0.25); padding: 18px 24px; color: white; font-weight: 600; display: flex; justify-content: space-between; align-items: center; }
+        .slide-body { padding: 24px; height: 320px; overflow-y: auto; color: white; }
+        .notif-item { display: flex; align-items: center; padding: 16px; margin-bottom: 16px; background: rgba(255,255,255,0.15); border-radius: 16px; }
+        .notif-item.buy { border-left: 5px solid #10b981; }
+        .notif-item.sell { border-left: 5px solid #ef4444; }
+        .notif-avatar { width: 48px; height: 48px; border-radius: 50%; background: rgba(255,255,255,0.3); margin-right: 16px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1.2rem; }
+
+        /* INTEGRATIONS PAGE STYLES */
+        .integration-container { max-width: 1000px; margin: 0 auto; }
+        .integration-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem; }
+        .back-btn { color: rgba(255,255,255,0.8); text-decoration: none; font-weight: 500; padding: 0.5rem 1rem; border-radius: 12px; transition: all 0.3s; }
+        .back-btn:hover { background: rgba(255,255,255,0.2); transform: translateY(-2px); }
+        .status-card { display: flex; align-items: center; gap: 1rem; padding: 2rem; background: rgba(255,255,255,0.15); border-radius: 20px; margin-bottom: 2rem; }
+        .status-card.connected { background: rgba(34,197,94,0.2); border: 2px solid #10b981; }
+        .status-card.disconnected { background: rgba(239,68,68,0.2); border: 2px solid #ef4444; }
+        .status-icon { font-size: 3rem; }
+        .config-section { background: rgba(255,255,255,0.15); border-radius: 20px; padding: 2rem; margin-bottom: 2rem; }
+        .form-group { margin-bottom: 1.5rem; }
+        .form-group label { display: block; font-weight: 600; margin-bottom: 0.75rem; }
+        .scopes { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+        .scope { padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.9rem; font-weight: 500; border: 2px solid rgba(255,255,255,0.3); }
+        .scope.active { background: #10b981; color: white; border-color: #10b981; }
+        .actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+        .actions .btn { padding: 1rem 2rem; font-size: 1rem; }
+
+        @media (max-width: 1024px) { .content-row, .bottom-row { grid-template-columns: 1fr; } .metrics-row { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 768px) { .metrics-row { grid-template-columns: 1fr; } .dashboard-header { flex-direction: column; text-align: center; } .actions { flex-direction: column; } }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div class="nav-content">
+            <div class="logo">🤖 AI Marketing Pro</div>
+            <div class="nav-links">
+                {% if session.get('username') %}
+                    <a href="{{ url_for('dashboard') }}">📊 Dashboard</a>
+                    <a href="{{ url_for('insights') }}">📈 Insights</a>
+                    <a href="{{ url_for('integrations') }}">🔗 Integrations</a>  <!-- ✅ FIXED: Changed from integrations_index -->
+                    <a href="{{ url_for('demo') }}">🤖 AI Demo</a>
+                    <a href="{{ url_for('reports') }}">📋 Reports</a>
+                    <a href="{{ url_for('settings') }}">⚙️ Settings</a>
+                {% else %}
+                    <a href="{{ url_for('pricing') }}">💎 Pricing</a>
+                    <a href="{{ url_for('integrations') }}">🔗 Integrations</a>  <!-- ✅ FIXED: Changed from integrations_index -->
+                {% endif %}
+                <a href="{{ url_for('help_page') }}">❓ Help</a>
+            </div>
+            <div class="user-info">
+                {% if session.get('username') %}
+                    <span>👋 {{ session.username }}</span>
+                    <a href="{{ url_for('logout') }}" class="btn btn-danger" style="padding: 0.5rem 1rem; font-size: 0.9rem;">Logout</a>
+                {% else %}
+                    <a href="{{ url_for('login') }}" class="btn" style="padding: 0.5rem 1rem; font-size: 0.9rem;">Login</a>
+                    <a href="{{ url_for('signup') }}" class="btn btn-secondary" style="padding: 0.5rem 1rem; font-size: 0.9rem;">Sign Up</a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+            <div class="flash-{{ 'success' if category == 'success' else 'error' }}">
+                {{ message }}
+            </div>
+            {% endfor %}
+        {% endif %}
+        {% endwith %}
+        {% block content %}{% endblock %}
+    </div>
+
+    <!-- NOTIFICATION SLIDE -->
+    <div id="notificationSlide" class="notification-slide">
+        <div class="slide-header">
+            <span id="notifCount">0</span> <i class="fas fa-bolt"></i> Live Activity
+            <button id="closeSlide" style="background:none; border:none; color:white; font-size:1.5rem; cursor:pointer;">&times;</button>
+        </div>
+        <div class="slide-body" id="slideBody"></div>
+    </div>
+
+    <script>
+    window.notifSlide = new NotificationSlide();
+    class NotificationSlide {
+        constructor() {
+            this.notifications = []; this.count = 0; this.init();
+        }
+        init() {
+            this.slide = document.getElementById('notificationSlide');
+            this.body = document.getElementById('slideBody');
+            this.countEl = document.getElementById('notifCount');
+            document.getElementById('closeSlide').onclick = () => this.slide.classList.remove('show');
+            setInterval(() => { if (!this.slide.classList.contains('show') && this.notifications.length > 0) this.slide.classList.add('show'); }, 25000);
+        }
+        addBuy(product, price, user = 'Someone') {
+            this.notifications.unshift({type: 'buy', product, price: parseFloat(price), user, time: new Date().toLocaleTimeString('en-US', {hour: 'numeric', minute:'2-digit'})});
+            this.showNotification();
+        }
+        addSell(product, price, user = 'Someone') {
+            this.notifications.unshift({type: 'sell', product, price: parseFloat(price), user, time: new Date().toLocaleTimeString('en-US', {hour: 'numeric', minute:'2-digit'})});
+            this.showNotification();
+        }
+        showNotification() {
+            this.count++; this.countEl.textContent = this.count; this.renderNotifications(); this.slide.classList.add('show');
+            setTimeout(() => { if (!document.querySelector(':hover')) this.slide.classList.remove('show'); }, 8000);
+        }
+        renderNotifications() {
+            this.body.innerHTML = this.notifications.slice(0,5).map(n => `
+                <div class="notif-item ${n.type}">
+                    <div class="notif-avatar">${n.user[0].toUpperCase()}</div>
+                    <div class="notif-text">
+                        <div><strong>${n.user}</strong> ${n.type === 'buy' ? 'purchased' : 'cancelled'}</div>
+                        <div>$${n.price.toFixed(0)} - ${n.product}</div>
+                        <div class="notif-time">${n.time}</div>
+                    </div>
+                </div>`).join('') || '<div style="text-align:center;opacity:0.7;padding:2rem;">No activity yet...</div>';
+        }
+    }
+    const demoUsers = ['Sarah K.', 'Mike R.', 'Priya S.', 'John D.'];
+    const demoProducts = ['AI Marketing Pro', 'Premium Plan', 'Enterprise'];
+    function simulateActivity() {
+        const user = demoUsers[Math.floor(Math.random() * 4)];
+        const product = demoProducts[Math.floor(Math.random() * 3)];
+        const price = (Math.random() * 299 + 29).toFixed(2);
+        Math.random() > 0.3 ? notifSlide.addBuy(product, price, user) : notifSlide.addSell(product, price, user);
+    }
+    setTimeout(simulateActivity, 2000); setInterval(simulateActivity, Math.random() * 7000 + 8000);
+    </script>
+</body>
+</html>

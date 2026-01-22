@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+    <h1>📈 Advanced Insights</h1>
+
+    <!-- TOP SUMMARY CARDS -->
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-number">{{ total_customers }}</div>
+            <div>Total Customers</div>
+            <p style="font-size:0.8rem; opacity:0.8;">
+                All customers currently tracked in the platform.
+            </p>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">{{ high_value }}</div>
+            <div>High Value Customers</div>
+            <p style="font-size:0.8rem; opacity:0.8;">
+                Customers with last purchase &gt; ₹100 (likely premium buyers).
+            </p>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">{{ high_engagement }}</div>
+            <div>Highly Engaged</div>
+            <p style="font-size:0.8rem; opacity:0.8;">
+                Customers with engagement score &gt; 0.8 (open/click often).
+            </p>
+        </div>
+    </div>
+
+    <!-- SEGMENTATION INSIGHTS -->
+    <div class="card">
+        <h3>🧩 Customer Segments (Conceptual)</h3>
+        <table>
+            <tr>
+                <th>Segment</th>
+                <th>Who they are</th>
+                <th>Recommended action</th>
+            </tr>
+            <tr>
+                <td>VIP</td>
+                <td>High value + high engagement</td>
+                <td>Exclusive offers, early access, loyalty rewards.</td>
+            </tr>
+            <tr>
+                <td>At Risk</td>
+                <td>High value + low engagement</td>
+                <td>Win‑back emails, personalized check‑ins, expiry reminders.</td>
+            </tr>
+            <tr>
+                <td>Growth</td>
+                <td>Low value + high engagement</td>
+                <td>Upsell bundles, cross‑sell related products.</td>
+            </tr>
+            <tr>
+                <td>Cold</td>
+                <td>Low value + low engagement</td>
+                <td>Broad campaigns, test subject lines, do not overspend.</td>
+            </tr>
+        </table>
+        <p style="margin-top:0.75rem; font-size:0.85rem; opacity:0.85;">
+            Use these segments to decide who should get discounts, who should get education content,
+            and where to focus your marketing budget.
+        </p>
+    </div>
+
+    <!-- CHANNEL & FUNNEL NOTES (TEXT-BASED) -->
+    <div class="card">
+        <h3>📊 Channel & Funnel Insights (Guidance)</h3>
+        <ul style="margin-left:1.2rem; line-height:1.6;">
+            <li>
+                If <strong>high_engagement</strong> is low compared to <strong>total_customers</strong>,
+                focus on subject line testing and send‑time optimization.
+            </li>
+            <li>
+                If <strong>high_value</strong> is a small fraction of your base, create a dedicated
+                VIP nurture journey (thank‑you emails, loyalty points, surprise gifts).
+            </li>
+            <li>
+                Track 3 key funnel metrics on every campaign: 
+                Impressions → Clicks → Leads → Conversions.
+            </li>
+            <li>
+                For each segment, define a primary goal:
+                awareness (views), engagement (clicks), or revenue (purchases).
+            </li>
+        </ul>
+    </div>
+
+    <!-- ACTIONABLE NEXT STEPS -->
+    <div class="card">
+        <h3>✅ Recommended Next Actions</h3>
+        <ol style="margin-left:1.2rem; line-height:1.6;">
+            <li>Create a separate list for high value + high engagement customers and plan a VIP campaign.</li>
+            <li>Design a win‑back sequence for customers who haven’t purchased in 60+ days.</li>
+            <li>Test at least 3 different subject lines on your next email campaign.</li>
+            <li>Review the Reports page every week to track if high_value and high_engagement are growing.</li>
+        </ol>
+        <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:1rem; margin-top:1rem;">
+            <a href="{{ url_for('reports') }}" class="btn btn-secondary" style="text-align:center;">📋 Go to Reports</a>
+            <a href="{{ url_for('demo') }}" class="btn" style="text-align:center;">🤖 Generate AI Message</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
